@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- ===== PROPIEDADES GENERALES ===== -->
+    <!-- Nombre del entorno / app (por si luego mandas a ficheros o sistemas externos) -->
+    <property name="APP_NAME" value="perfiles-db-dev"/>
+    <!-- Un solo log para DEV, en la carpeta logs del proyecto -->
+    <property name="LOG_FILE" value="logs/dev.log"/>
+    <!-- Patrón legible y profesional -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [DEV] [%thread] %logger{36} - %msg%n"/>
+    <!-- ===== APPENDER CONSOLA (para desarrollo diario) ===== -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <!-- ===== APPENDER FICHERO (DEV.LOG) CON ROTACIÓN DIARIA ===== -->
+    <appender name="DEV_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Fichero principal -->
+        <file>${LOG_FILE}</file>
+        <!-- Política de rotación: un fichero por día, se guardan 10 días -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/dev.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <!-- ===== NIVELES POR PAQUETE (TÍPICO ENTORNO EMPRESARIAL EN DEV) ===== -->
+    <!-- Tu código: muy verboso para depurar bien -->
+    <!-- Cambia el paquete si el tuyo no es exactamente este -->
+    <logger name="c.e.p" level="DEBUG"/>
+    <!-- Spring: en INFO para que no reviente la consola con DEBUG inútil -->
+    <logger name="org.springframework" level="INFO"/>
+    <!-- Hibernate: suele ser muy ruidoso, lo subimos un poco -->
+    <logger name="org.hibernate" level="WARN"/>
+    <!-- ===== ROOT LOGGER ===== -->
+    <!-- Nivel global: INFO. Tu paquete ya está en DEBUG arriba -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DEV_FILE"/>
+    </root>
+</configuration>
+

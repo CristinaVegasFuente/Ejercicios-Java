@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- ===== PROPIEDADES GENERALES ===== -->
+    <property name="APP_NAME" value="perfiles-db-prod"/>
+    <!-- Un único log en producción -->
+    <property name="LOG_FILE" value="logs/prod.log"/>
+    <!-- Patrón profesional y serio -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [PROD] [%thread] %logger{36} - %msg%n"/>
+    <!-- ===== CONSOLA (en prod suele ser moderada porque Kubernetes/Docker la capturan) ===== -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <!-- ===== FICHERO ÚNICO prod.log CON ROTACIÓN ===== -->
+    <appender name="PROD_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- Fichero principal -->
+        <file>${LOG_FILE}</file>
+        <!-- Rotación diaria, guardamos 30 días (típico en empresas) -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/prod.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <!-- ===== NIVELES POR PAQUETE (producción real) ===== -->
+    <!-- Tu app: en INFO -->
+    <!-- Cámbialo si tu paquete raíz es otro -->
+    <logger name="com.ejemplo.perfiles_db" level="INFO"/>
+    <!-- Spring: en WARN para evitar ruido de autoconfiguración -->
+    <logger name="org.springframework" level="WARN"/>
+    <!-- Hibernate: lo más silencioso posible -->
+    <logger name="org.hibernate" level="ERROR"/>
+    <!-- ===== ROOT ===== -->
+    <!-- Nivel global: INFO -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="PROD_FILE"/>
+    </root>
+</configuration>
