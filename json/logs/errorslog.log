@@ -1,0 +1,14 @@
+-------------------- ERROR --------------------
+Fecha: 2025-11-21 11:22:37
+Nivel: ERROR
+Clase: org.hibernate.engine.jdbc.spi.SqlExceptionHelper
+Mensaje: Duplicate entry 'ESTADO_CIVIL' for key 'attribute.UKhpwum0iq12fs4ej5d0tgy6wsn'
+------------------------------------------------
+
+-------------------- ERROR --------------------
+Fecha: 2025-11-21 11:22:37
+Nivel: ERROR
+Clase: com.example.json.exception.GlobalExceptionHandler
+Mensaje: Error no controlado en path /api/attributes:
+------------------------------------------------
+

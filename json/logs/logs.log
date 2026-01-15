@@ -1,0 +1,182 @@
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:20:33
+Hilo:   main
+Clase:  com.example.json.JsonApplication
+Mensaje:Starting JsonApplication using Java 21.0.8 with PID 4628 (C:\Users\cvegas\Desktop\Ejercicios Java\APIs\json\json\target\classes started by cvegas in C:\Users\cvegas\Desktop\Ejercicios Java\APIs\json)
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:20:33
+Hilo:   main
+Clase:  com.example.json.JsonApplication
+Mensaje:Running with Spring Boot v3.5.7, Spring v6.2.12
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:20:33
+Hilo:   main
+Clase:  com.example.json.JsonApplication
+Mensaje:No active profile set, falling back to 1 default profile: "default"
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:20:42
+Hilo:   main
+Clase:  com.example.json.JsonApplication
+Mensaje:Started JsonApplication in 9.536 seconds (process running for 10.308)
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:21:56
+Hilo:   http-nio-8080-exec-5
+Clase:  com.example.json.controller.AttributeTypeController
+Mensaje:POST /api/attribute-types -> creando nuevo tipo
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:22:06
+Hilo:   http-nio-8080-exec-7
+Clase:  com.example.json.controller.AttributeTypeController
+Mensaje:POST /api/attribute-types -> creando nuevo tipo
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:22:28
+Hilo:   http-nio-8080-exec-10
+Clase:  com.example.json.controller.AttributeController
+Mensaje:POST /api/attributes -> creando atributo
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:22:37
+Hilo:   http-nio-8080-exec-9
+Clase:  com.example.json.controller.AttributeController
+Mensaje:POST /api/attributes -> creando atributo
+------------------------------------------------
+
+-------------------- ERROR --------------------
+Fecha:  2025-11-21 11:22:37
+Hilo:   http-nio-8080-exec-9
+Clase:  com.example.json.exception.GlobalExceptionHandler
+Mensaje:Error no controlado en path /api/attributes:
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:22:57
+Hilo:   http-nio-8080-exec-8
+Clase:  com.example.json.controller.AttributeController
+Mensaje:POST /api/attributes -> creando atributo
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.controller.JsonImportController
+Mensaje:POST /api/json/import -> iniciando importación
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.JsonImportService
+Mensaje:Empieza importación JSON con 1 claves raíz
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.JsonImportService
+Mensaje:Procesando clave raíz 'PERSONA'
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.JsonImportService
+Mensaje:NODE 'PERSONA' con 11 hijos
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.AttributeTypeValueService
+Mensaje:Creando nuevo AttributeTypeValue 'MUJER' para tipo 'GENERO'
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.AttributeTypeValueService
+Mensaje:Creando nuevo AttributeTypeValue 'SOLTERA' para tipo 'ESTADO_CIVIL'
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.JsonImportService
+Mensaje:NODE 'FAVORITOS' con 2 hijos
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.JsonImportService
+Mensaje:NODE 'COCHE' con 6 hijos
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.JsonImportService
+Mensaje:NODE 'MASCOTAS' con 3 hijos
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.JsonImportService
+Mensaje:NODE 'MASCOTAS' con 3 hijos
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.service.JsonImportService
+Mensaje:Importacion json ok
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:23:22
+Hilo:   http-nio-8080-exec-1
+Clase:  com.example.json.controller.JsonImportController
+Mensaje:Importación JSON completada con éxito
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:24:00
+Hilo:   http-nio-8080-exec-2
+Clase:  com.example.json.controller.JsonExportController
+Mensaje:GET /api/config/export -> reconstruyendo JSON final
+------------------------------------------------
+
+-------------------- INFO --------------------
+Fecha:  2025-11-21 11:24:00
+Hilo:   http-nio-8080-exec-2
+Clase:  com.example.json.service.JsonExportService
+Mensaje:Exportando JSON desde 1 nodos raíz
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:24:00
+Hilo:   http-nio-8080-exec-2
+Clase:  com.example.json.service.JsonExportService
+Mensaje:JSON exportado con 1 claves en la raíz
+------------------------------------------------
+
+-------------------- DEBUG --------------------
+Fecha:  2025-11-21 11:24:00
+Hilo:   http-nio-8080-exec-2
+Clase:  com.example.json.controller.JsonExportController
+Mensaje:JSON exportado con 1 claves en la raíz
+------------------------------------------------
+

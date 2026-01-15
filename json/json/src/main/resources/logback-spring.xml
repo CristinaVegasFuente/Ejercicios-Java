@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Ver errores de logback -->
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+    <!--APPENDER DE CONSOLA-->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!--FILE APPENDER GENERAL (real)-->
+    <appender name="XML_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/logs.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/logs-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern><![CDATA[
+-------------------- %level --------------------
+Fecha:  %date{yyyy-MM-dd HH:mm:ss}
+Hilo:   %thread
+Clase:  %logger
+Mensaje:%message
+------------------------------------------------
+%nopex%n
+            ]]></pattern>
+        </encoder>
+    </appender>
+    <!--FILE APPENDER SOLO ERRORES-->
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/errorslog.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/errorslog-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>14</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern><![CDATA[
+-------------------- ERROR --------------------
+Fecha: %date{yyyy-MM-dd HH:mm:ss}
+Nivel: %level
+Clase: %logger
+Mensaje: %message
+------------------------------------------------
+%nopex%n
+            ]]></pattern>
+        </encoder>
+        <!-- filtro errores -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <!--appenders asincronos-->
+    <appender name="ASYNC_XML_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="XML_FILE"/>
+        <!-- tamaño de la cola en memoria -->
+        <queueSize>512</queueSize>
+        <!-- 0 = no descartes mensajes cuando la cola se llena -->
+        <discardingThreshold>0</discardingThreshold>
+    </appender>
+    <appender name="ASYNC_ERROR_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="ERROR_FILE"/>
+        <queueSize>256</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+    </appender>
+    <!--ROOT LOGGER-->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ASYNC_ERROR_FILE" />
+    </root>
+    <!--LOGGER DE TU CÓDIGO-->
+    <logger name="com.example.json" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ASYNC_XML_FILE" />
+        <appender-ref ref="ASYNC_ERROR_FILE" />
+    </logger>
+    <!-- REDUCIR RUIDO HIBERNATE -->
+    <logger name="org.hibernate" level="WARN" />
+    <logger name="org.hibernate.SQL" level="ERROR" />
+    <!-- REDUCIR RUIDO SPRING -->
+    <logger name="org.springframework" level="WARN" />
+    <logger name="org.springframework.boot.autoconfigure" level="WARN" />
+</configuration>
+
+
+
+
+        <!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<configuration>-->
+<!--    &lt;!&ndash; Esto hace que Logback saque en consola cualquier error de configuración &ndash;&gt;-->
+<!--    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />-->
+<!--    &lt;!&ndash;Appender de consola (para ver logs en IntelliJ)&ndash;&gt;-->
+<!--    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            &lt;!&ndash; formato típico de consola &ndash;&gt;-->
+<!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+<!--    <appender name="XML_FILE" class="ch.qos.logback.core.FileAppender">-->
+<!--        &lt;!&ndash; fichero relativo a la raíz del proyecto &ndash;&gt;-->
+<!--        <file>logs/ficherologs.log</file>-->
+<!--        <append>true</append>-->
+<!--        &lt;!&ndash;En lugar de XMLLayout (que mete mil cosas raras),-->
+<!--            usamos un PatternLayoutEncoder y NOSOTROS montamos el "XML".&ndash;&gt;-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <pattern>-->
+<!--                <![CDATA[-->
+<!--<log timestamp="%date{yyyy-MM-dd HH:mm:ss}"-->
+<!--     level="%level"-->
+<!--     logger="%logger"-->
+<!--     thread="%thread">%msg</log>%n-->
+<!--                ]]>-->
+<!--            </pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+<!--    &lt;!&ndash;ROOT: solo a CONSOLA. Aquí van todos los logs de Spring, Hibernate, Tomcat, etc.-->
+<!--        No queremos que ensucien nuestro fichero&ndash;&gt;-->
+<!--    <root level="INFO">-->
+<!--        <appender-ref ref="CONSOLE" />-->
+<!--    </root>-->
+<!--    &lt;!&ndash;Tu código: com.example.json. level DEBUG para ver TODO,-->
+<!--    additivity="false" para que no se duplique en el root, va a CONSOLA y además al fichero XML_FILE&ndash;&gt;-->
+<!--    <logger name="com.example.json" level="DEBUG" additivity="false">-->
+<!--        <appender-ref ref="CONSOLE" />-->
+<!--        <appender-ref ref="XML_FILE" />-->
+<!--    </logger>-->
+<!--</configuration>-->

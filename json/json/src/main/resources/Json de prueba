@@ -1,0 +1,51 @@
+
+PASO 1: para crear el enum:
+POST  Attribute-Type
+
+{
+  "type": "ESTADO_CIVIL",
+  "list": false,
+  "enum": true
+}
+
+PASO 2: para crear el atributo:
+POST Attribute
+
+{
+  "name": "ESTADO_CIVIL",
+  "attributeType": {
+    "id": 1
+  }
+}
+
+PASO 3: importar el json a la bd
+POST Json import
+
+{
+  "PERSONA": {
+    "NOMBRE": "Cristina",
+    "EDAD": 37,
+    "ALTURA_CM": 171,
+    "GENERO": "MUJER",
+    "ESTADO_CIVIL": "SOLTERA",
+    "FAVORITOS": {
+      "COLORES": ["VERDE", "BLANCO", "AMARILLO"],
+      "COMIDAS": ["PIZZA", "HAMBURGUESA", "ARROZ"]
+    },
+    "FECHA_NACIMIENTO": "1988-06-25",
+    "DIAS_SEMANA": ["LUNES", "MARTES", "MIERCOLES"],
+    "COCHE": {
+      "MARCA": "VOLKSWAGEN",
+      "MODELO": "GOLF",
+      "COLOR": "BLANCO",
+      "AÑO": 2018,
+      "MATRICULA": "4472KCW",
+      "ELECTRICO": false
+    },
+    "MASCOTAS": [
+      {"NOMBRE": "DANI", "TIPO": "PERRO", "EDAD": 9},
+      {"NOMBRE": "WINDY", "TIPO": "PERRO", "EDAD": 9}
+    ],
+    "HOBBIES": ["LECTURA", "PLANTAS", "ESCALADA"]
+  }
+}
