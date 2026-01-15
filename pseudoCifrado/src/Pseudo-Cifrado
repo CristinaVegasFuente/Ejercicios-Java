@@ -1,0 +1,19 @@
+Pseudo-cifrado
+
+Crear una clase que implemente un algoritmo de pseudo-cifrado que, dado un string S y un entero N,
+concatene todos los caracteres con índice impar de S con todos los caracteres con índice par de S.
+Este proceso se debe repetir N veces.
+
+Ejemplos:
+
+encrypt("012345", 1) => "135024"
+encrypt("012345", 2) => "135024" -> "304152"
+encrypt("012345", 3) => "135024" -> "304152" -> "012345"
+encrypt("01234", 1) => "13024"
+encrypt("01234", 2) => "13024" -> "32104"
+encrypt("01234", 3) => "13024" -> "32104" -> "20314"
+
+Junto con la función de cifrado, también debes implementar una función de descifrado que
+revierta el proceso.
+Si el string S es un valor vacío o el entero N no es positivo, devuelve el primer argumento
+sin cambios.
