@@ -1,0 +1,36 @@
+Lenguaje Amistoso
+
+Implementar una clase que implemente la logica necesaria para formatear una duración, dada como un número de segundos,
+de una manera fácil de entender para los humanos.
+La función debe aceptar un entero no negativo. Si es cero, simplemente debe devolver "ahora". De lo contrario,
+la duración se expresa como una combinación de años, días, horas, minutos y segundos.
+
+Ejemplos
+
+Para 62, la salida a de ser:
+**"1 minuto y 2 segundos"**
+Para 3662, la salida ha de ser:
+**"1 hora, 1 minuto y 2 segundos"**
+
+A fines prácticos, un año es 365 días y un día son 24 horas.
+
+Detalles:
+
+1. La expresión resultante se compone de elementos como "4 segundos", "1 año", etc. En general, un número
+entero positivo y una de las unidades válidas de tiempo, separadas por un espacio.
+La unidad de tiempo se usa en plural si el número entero es mayor que 1.
+
+2. Los elementos están separados por una coma y un espacio (", "). Excepto el último elemento, que se separa
+por " y ", como se escribiría en español.
+
+3. Una unidad de tiempo más significativa aparecerá antes que una menos significativa. Por lo tanto,
+"1 segundo y 1 año" no es correcto, pero "1 año y 1 segundo" sí lo es.
+
+4. Diferentes componentes tienen diferentes unidades de tiempo. No se repiten unidades como "5 segundos y 1 segundo".
+
+5. Un componente no aparecerá si su valor es cero. Por lo tanto, "1 minuto y 0 segundos" no es válido,
+pero debería ser simplemente "1 minuto".
+
+6. Una unidad de tiempo debe usarse "tanto como sea posible". Esto significa no se debería devolver
+"61 segundos", sino "1 minuto y 1 segundo". Formalmente, la duración especificada de un componente no debe ser
+mayor que cualquier unidad más significativa de tiempo válida (una ño no puede tener mas de 365 dias, por ejemplo).
